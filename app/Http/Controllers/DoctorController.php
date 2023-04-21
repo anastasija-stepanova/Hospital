@@ -12,9 +12,9 @@ class DoctorController extends Controller
         try {
             $data = $request->validated();
             Doctor::create($data);
-            return 'Doctor created successfully';
+            return \response()->json(['status' => 'Doctor created successfully']);
         } catch (\Exception $e) {
-            return $e->getMessage();
+            return \response()->json(['error' => $e->getMessage()], $e->getStatusCode());
         }
     }
 }

@@ -12,8 +12,8 @@ use Illuminate\Http\Request;
 
 class MedicalAppointmentController extends Controller
 {
-    const PER_PAGE = 10;
-    const AVAILABLE_SORT = ['asc', 'desc'];
+    private const PER_PAGE = 10;
+    private const AVAILABLE_SORT = ['asc', 'desc'];
 
     public function create(MedicalAppointmentCreateRequest $request): JsonResponse
     {
@@ -32,7 +32,7 @@ class MedicalAppointmentController extends Controller
         if (isset($request->filter['doctor']['lastName'])) {
             $appointmentQuery->whereRelation(
                 'doctor',
-                'lastName',
+                'last_name',
                 '=',
                 $request->filter['doctor']['lastName']
             );
@@ -40,7 +40,7 @@ class MedicalAppointmentController extends Controller
         if (isset($request->filter['doctor']['firstName'])) {
             $appointmentQuery->whereRelation(
                 'doctor',
-                'firstName',
+                'first_name',
                 '=',
                 $request->filter['doctor']['firstName']
             );
@@ -57,7 +57,7 @@ class MedicalAppointmentController extends Controller
         if (isset($request->filter['patient']['lastName'])) {
             $appointmentQuery->whereRelation(
                 'patient',
-                'lastName',
+                'last_name',
                 '=',
                 $request->filter['patient']['lastName']
             );
@@ -65,7 +65,7 @@ class MedicalAppointmentController extends Controller
         if (isset($request->filter['patient']['firstName'])) {
             $appointmentQuery->whereRelation(
                 'patient',
-                'firstName',
+                'first_name',
                 '=',
                 $request->filter['patient']['firstName']
             );
@@ -73,7 +73,7 @@ class MedicalAppointmentController extends Controller
         if (isset($request->filter['patient']['middleName'])) {
             $appointmentQuery->whereRelation(
                 'patient',
-                'middleName',
+                'middle_name',
                 '=',
                 $request->filter['patient']['middleName']
             );

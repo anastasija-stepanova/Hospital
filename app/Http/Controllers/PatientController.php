@@ -12,9 +12,9 @@ class PatientController extends Controller
         try {
             $data = $request->validated();
             Patient::create($data);
-            return 'Patient created successfully';
+            return \response()->json(['status' => 'Patient created successfully']);
         } catch (\Exception $e) {
-            return $e->getMessage();
+            return \response()->json(['error' => $e->getMessage()], $e->getStatusCode());
         }
     }
 }
